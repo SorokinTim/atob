@@ -7,28 +7,25 @@ export default function Input(props) {
     const [placeholderClassName, setPlaceholderClassName] = useState([s.placeholder, s.placeholderActive]);
 
     const changePlaceholderToActive = () => {
-        const classes = [
+        setPlaceholderClassName([
             s.placeholder,
             s.placeholderPassive,
-        ];
-        setPlaceholderClassName(classes);
+        ]);
     };
 
     const changeBottomLineToError = () => {
-        console.log('YES!');
-
-        const classes = [
+        setLineClassName([
             s.bottomLine,
             s.lineError,
-        ];
-
-        setLineClassName(classes);
+        ]);
     };
 
     return (
         <div className={s.inputContainer}>
-            <div className={placeholderClassName.join(' ')}>Ваше имя</div>
-            <input type="text" className={s.input} onFocus={changePlaceholderToActive} onBlur={changeBottomLineToError}/>
+            <div className={placeholderClassName.join(' ')}>{props.placeholder}</div>
+            <i className={`fas fa-eye ${s.inputIcon}`}/>
+            <input type={props.type} className={s.input} onFocus={changePlaceholderToActive}
+                   onBlur={changeBottomLineToError}/>
             <div className={lineClassName.join(' ')}/>
         </div>
     )
