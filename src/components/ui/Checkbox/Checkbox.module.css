@@ -1,0 +1,36 @@
+.checkboxContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    color: #2b292b;
+    font-size: .6rem;
+    box-shadow: 0 0 1px #2b292b;
+}
+
+.checked {
+    color: white;
+    background-color: #a1ff26;
+}
+
+.unChecked {
+    border: 1px solid #ff3620;
+}
+
+.checkboxText {
+    margin: 0 0 0 7px;
+    font-size: .8rem;
+    font-weight: 500;
+}

@@ -10,6 +10,7 @@
 .iconSection {
     width: 100px;
     height: 100%;
+    position: relative;
 }
 
 .iconContainer {
@@ -37,8 +38,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 2rem;
-    left: 5px;
-    top: 5px;
+    left: 5%;
     z-index: 0;
 }
 
