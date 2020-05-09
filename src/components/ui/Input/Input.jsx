@@ -6,8 +6,9 @@ export default function Input(props) {
     const [isEmpty, setIsEmpty] = useState(true);
     const [isActive, setIsActive] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isInputFocused, setIsInputFocused] = useState(null);
 
-    const returnPlaceholderWithState = () => {
+    const renderPlaceholderWithState = () => {
         if (isActive) {
             return (<div className={`${s.placeholder} ${s.placeholderPassive}`}>{props.placeholder}</div>)
         } else {
@@ -15,18 +16,21 @@ export default function Input(props) {
         }
     };
 
-    const returnBottomLineWithState = () => {
-        if (isEmpty && !isActive) {
-            return (<div className={`${s.bottomLine}`}/>);
-        } else if (isEmpty) {
-            console.log('yea!');
+    const renderBottomLineWithState = () => {
+        if (isEmpty === true && isInputFocused === false) {
+            return (<div className={`${s.bottomLine} ${s.lineError}`}/>);
+        } else if (isEmpty === false && isInputFocused === true){
+            return (<div className={`${s.bottomLine} ${s.line100}`}/>);
+        } else if (isEmpty === false) {
+            return (<div className={`${s.bottomLine} ${s.line100}`}/>);
+        } else if(props.isSubmitClicked && isEmpty) {
             return (<div className={`${s.bottomLine} ${s.lineError}`}/>);
         } else {
-            return (<div className={`${s.bottomLine} ${s.line100}`}/>);
+            return (<div className={`${s.bottomLine}`}/>);
         }
     };
 
-    const returnPasswordIcon = () => {
+    const renderPasswordIcon = () => {
         if (props.type === "password") {
             return (<i className={`${(isPasswordVisible) ? "fas fa-eye-slash" : "fas fa-eye"} ${s.inputIcon}`}
                        onClick={() => setIsPasswordVisible(prevState => {
@@ -39,14 +43,25 @@ export default function Input(props) {
 
     return (
         <div className={`${s.inputContainer} ${props.className}`}>
-            {returnPasswordIcon()}
-            {returnPlaceholderWithState()}
-            <input type={(props.type === "password" && isPasswordVisible === false) ? "password" : "text"} className={s.input}
-                   onFocus={() => setIsActive(true)}
-                // onBlur={(e) => e.target.value !== "" ? setIsEmpty(false) : setIsEmpty(true)}
-                   onChange={event => event.target.value !== "" ? setIsEmpty(false) : setIsEmpty(true)}
+            {renderPasswordIcon()}
+            {renderPlaceholderWithState()}
+            <input type={(props.type === "password" && isPasswordVisible === false) ? "password" : "text"}
+                   className={s.input}
+                   onFocus={() => {
+                       setIsActive(true);
+                       setIsInputFocused(true);
+                   }}
+                   onBlur={() => setIsInputFocused(false)}
+                   onChange={event => {
+                       if(event.target.value !== "") {
+                           setIsEmpty(false);
+                       } else {
+                           setIsEmpty(true)
+                       }
+                       props.onChange(event.target.value);
+                   }}
             />
-            {returnBottomLineWithState()}
+            {renderBottomLineWithState()}
         </div>
     )
 }
