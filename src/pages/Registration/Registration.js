@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import "./Registration.scss";
+import {initializedFirebase, database} from "../../server";
 import Input from './../../components/ui/Input/Input'
 import Button from './../../components/ui/Button/Button'
 import BottomInfoSlider from "./../../components/ui/BottomInfoSlider/BottomInfoSlider";
 import Checkbox from "../../components/ui/Checkbox/Checkbox";
 
-export default function Registration() {
+export default function Registration(email, password) {
     const [userName, setUserName] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const [userPassword, setUserPassword] = useState(null);
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
     const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+    let userID = null;
 
     const submit = () => {
         setIsSubmitClicked(true);
@@ -19,11 +21,13 @@ export default function Registration() {
         } else if (!userPassword || !userEmail || !userName) {
             alert("Не всё ввели!")
         } else {
-            // TODO: основные данные:
-            // userName - Имя пользователя
-            // userEmail - Email пользователя
-            // userPassword - Пароль пользователя
-            // TODO: Их нужно передать в базу данных, также нужно сгенерировать ключ для каждого пользователя
+            initializedFirebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(() => {
+                userID = initializedFirebase.auth().currentUser.uid;
+                initializedFirebase.database().ref(`/users/${userID}`).set({
+                    name: userName,
+                    email: userEmail
+                });
+            });
         }
     };
 

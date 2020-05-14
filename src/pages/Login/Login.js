@@ -1,10 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Login.scss";
 import Input from './../../components/ui/Input/Input'
 import Button from './../../components/ui/Button/Button'
 import BottomInfoSlider from "./../../components/ui/BottomInfoSlider/BottomInfoSlider";
 
 export default function Login() {
+
+    const [userEmail, setUserEmail] = useState(null);
+    const [userPassword, setUserPassword] = useState(null);
+    const [isSubmitClicked, setIsSubmitClicked] = useState(false);
+
     return (
         <div className="container">
             <div className="form-block container__form-block">
@@ -14,8 +19,12 @@ export default function Login() {
                         Atob!
                     </div>
                     <form action="#" className="form-block__form form">
-                        <Input type={"email"} placeholder={"Введите почту"} className="form__input"/>
-                        <Input type={"password"} placeholder={"Введите пароль"} className="form__input"/>
+                        <Input type={"email"} placeholder={"Введите почту"} className="form__input"
+                               isSubmitClicked={isSubmitClicked}
+                               onChange={setUserEmail}/>
+                        <Input type={"password"} placeholder={"Введите пароль"} className="form__input"
+                               isSubmitClicked={isSubmitClicked}
+                               onChange={setUserPassword}/>
                         <Button placeholder={"Войти"} className="form__button"/>
                     </form>
                 </div>
