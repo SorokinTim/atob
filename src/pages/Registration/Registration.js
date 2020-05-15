@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./Registration.scss";
-import {initializedFirebase, database} from "../../server";
+import {initializedFirebase} from "../../server";
 import Input from './../../components/ui/Input/Input'
 import Button from './../../components/ui/Button/Button'
 import BottomInfoSlider from "./../../components/ui/BottomInfoSlider/BottomInfoSlider";
