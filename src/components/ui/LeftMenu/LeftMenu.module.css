@@ -1,0 +1,104 @@
+.leftMenu {
+    flex: 15;
+    background-color: #FFFFFF;
+    box-shadow: -15px 0 20px 0 #2b292b;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 40px 0;
+}
+
+.createProduct {
+    width: 100%;
+    height: 60px;
+    background-color: #F6F5F0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.titleContainer {
+    flex: 80;
+    margin: 0 10px 0 0;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    line-height: 1.3rem;
+}
+
+.plusContainer {
+    flex: 20;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.plusCircle {
+    background-color: #F4D254;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.plus {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.linkSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.link {
+    margin: 0 0 5px 0;
+}
+
+.linkActive{
+    color: #F4D254;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-top: auto;
+}
+
+.profileContainer {
+    flex: 20;
+}
+
+.profileCircle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #F4D254 url(./../../img/MaleAvatar.png) center center;
+    background-size: 100%;
+    border-radius: 100%;
+}
+
+.profileName {
+    flex: 80;
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: .9rem;
+}
